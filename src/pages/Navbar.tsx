@@ -1,16 +1,16 @@
-import Logo from '../assets/logo.png';
+import Logo from "../assets/logo.png";
 
 const Navbar = () => {
-  const navItems = [
-    { id: 'dashboard', path: '/' || '/dashboard', label: 'Dashboard' },
-    { id: 'logout', path: '/logout', label: 'Signout' },
-  ];
+  // const navItems = [
+  //   { id: 'dashboard', path: '/' || '/dashboard', label: 'Dashboard' },
+  //   { id: 'logout', path: '/logout', label: 'Signout' },
+  // ];
   return (
-    <nav className="fixed top-0 z-50 w-full bg-white border-b border-gray-100 dark:bg-gray-100 dark:border-gray-100">
+    <nav className="fixed top-0 z-50 w-full bg-white border-b border-gray-200">
       <div className="flex flex-wrap items-center justify-between mx-auto p-4">
-        <a href="https://flowbite.com/" className="flex items-center">
+        <a href="#" className="flex items-center">
           <img src={Logo} className="h-8 mr-3" alt="Flowbite Logo" />
-          <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
+          <span className="self-center text-2xl font-semibold whitespace-nowrap ">
             CAMIS
           </span>
         </a>

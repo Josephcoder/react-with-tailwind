@@ -1,12 +1,15 @@
-import { ReactNode } from 'react';
+import { ReactNode } from "react";
 
 interface Props {
   children?: ReactNode;
   title?: string;
+  className?: string;
 }
-const Card = ({ children }: Props) => {
+const Card = ({ children, className }: Props) => {
   return (
-    <div className="bg-white rounded-md shadow-lg border border-1 border-gray-100  p-4 sm:p-4 md:p-4">
+    <div
+      className={`bg-white rounded-md border border-1 border-gray-200  p-4 sm:p-4 md:p-4 ${className}`}
+    >
       {children}
     </div>
   );
