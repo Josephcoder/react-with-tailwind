@@ -1,28 +1,33 @@
-import { ImProfile } from "react-icons/im";
-import { MdDashboardCustomize } from "react-icons/md";
-import { Link, useLocation } from "react-router-dom";
+import { ImProfile } from 'react-icons/im';
+import { MdDashboardCustomize } from 'react-icons/md';
+import { Link, useLocation } from 'react-router-dom';
 
-import { MdSchool } from "react-icons/md";
+import { MdSchool } from 'react-icons/md';
 const Sidebar = () => {
   const location = useLocation();
-
   const navItems = [
     {
-      id: "dashboard",
-      label: "Dashboard",
-      path: "/" || "/dashboard",
+      id: 'dashboard',
+      label: 'Dashboard',
+      path: '/dashboard',
       icon: <MdDashboardCustomize />,
     },
     {
-      id: "district",
-      label: "District Schools",
-      path: "/dashboard/district",
+      id: 'school',
+      label: 'Schools submission',
+      path: '/dashboard/schools/marks',
       icon: <ImProfile />,
     },
     {
-      id: "marks",
-      label: "School",
-      path: "//dashboard/marks",
+      id: 'teacher',
+      label: 'Teacher submission',
+      path: '/dashboard/teachers/marks',
+      icon: <MdSchool />,
+    },
+    {
+      id: 'students',
+      label: 'Students submission',
+      path: '/dashboard/students/marks',
       icon: <MdSchool />,
     },
   ];
@@ -41,7 +46,7 @@ const Sidebar = () => {
                 <Link
                   to={navItem.path}
                   className={`${
-                    location.pathname === navItem.path ? "bg-indigo-100" : ""
+                    location.pathname === navItem.path ? 'bg-indigo-100' : ''
                   } flex items-center p-2 text-indigo-500 rounded-lg dark:text-indigo hover:bg-indigo-100 dark:hover:bg-stale-200`}
                 >
                   {navItem.icon}

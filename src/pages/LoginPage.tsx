@@ -1,9 +1,10 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
-import { Navigate } from 'react-router-dom';
 import { z } from 'zod';
-import useAuthStore from '../statemanagement/auth/store';
 import { Card } from '../components/Card';
+import useLogin from '../hooks/useLogin';
+import { Navigate } from 'react-router';
+import useAuthStore from '../statemanagement/auth/store';
 
 const schema = z.object({
   username: z
@@ -16,6 +17,7 @@ const schema = z.object({
 export type FormData = z.infer<typeof schema>;
 
 const LoginPage = () => {
+  const { user } = useAuthStore();
   const {
     register,
     handleSubmit,
@@ -23,10 +25,10 @@ const LoginPage = () => {
   } = useForm<FormData>({
     resolver: zodResolver(schema),
   });
-  const { user, login } = useAuthStore();
+  const userLogin = useLogin(() => {});
 
   const onSubmit = (data: FormData) => {
-    login(data);
+    userLogin.mutate(data);
   };
 
   if (user) return <Navigate replace to="/dashboard" />;
@@ -48,13 +50,13 @@ const LoginPage = () => {
                 Username
               </label>
               <input
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                 {...register('username', {})}
                 name="username"
                 placeholder="Enter username..."
               />
               {errors.username && (
-                <text className="text-red-600">{errors.username.message}</text>
+                <p className="text-red-600">{errors.username.message}</p>
               )}
             </div>
             <div>
@@ -62,7 +64,7 @@ const LoginPage = () => {
                 Password
               </label>
               <input
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 {...register('password')}
                 name="password"
                 placeholder="Enter password..."
@@ -81,6 +83,9 @@ const LoginPage = () => {
               Sign in
             </button>
           </form>
+          <div className="flex justify-center items-center p-4">
+            {userLogin.isError && <p className="text-red-600">Fail to login</p>}
+          </div>
         </Card>
       </div>
     </div>

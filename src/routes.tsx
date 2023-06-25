@@ -4,6 +4,8 @@ import ErrorPage from './pages/ErrorPage';
 import DashboardPage from './pages/DashboardPage';
 import Layout from './pages/Layout';
 import SchoolPage from './pages/SchoolPage';
+import StudentPage from './pages/StudentPage';
+import TeacherPage from './pages/TeacherPage';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -19,8 +21,16 @@ const router = createBrowserRouter([
         element: <DashboardPage />,
       },
       {
-        path: '/dashboard/school',
+        path: '/dashboard/schools/marks',
         element: <SchoolPage />,
+      },
+      {
+        path: '/dashboard/teachers/marks',
+        element: <TeacherPage />,
+      },
+      {
+        path: '/dashboard/students/marks',
+        element: <StudentPage />,
       },
     ],
   },

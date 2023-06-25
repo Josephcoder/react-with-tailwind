@@ -3,9 +3,9 @@ import { Card } from '../components/Card';
 import MarksSubMiniStatistics from '../components/MarksSubMiniStatistics';
 import SmallNavBar from '../components/SmallNavBar';
 import schoolDistrictSubmission, {
-  SchoolOwner,
+  TeacherOwner,
 } from '../data/schoolSubmittedMarks';
-const SchoolPage = () => {
+const TeacherPage = () => {
   const series = [
     {
       name: 'private	',
@@ -29,10 +29,10 @@ const SchoolPage = () => {
   return (
     <div className="flex flex-col gap-y-4">
       <Card className="sticky top-14 z-40">
-        <SmallNavBar title="School Marks" />
+        <SmallNavBar title="Teacher marks submission" />
       </Card>
       <div className="grid grid-cols-2 sm:grid-cols-1 md:grid-cols-4 gap-4">
-        {SchoolOwner.map(({ title, icon, color, total, bg }, index) => {
+        {TeacherOwner.map(({ title, icon, color, total, bg }, index) => {
           return (
             <MarksSubMiniStatistics
               key={index}
@@ -66,7 +66,7 @@ const SchoolPage = () => {
           categories={categories}
           series={series}
           type="bar"
-          title="District school total"
+          title="District teacher total"
           width="100%"
           height={600}
         />
@@ -74,8 +74,8 @@ const SchoolPage = () => {
       <Card className="p-0">
         <div className="flex ">
           <div className="flex-1">
-            <h3 className="text-2xl font-bold">District students list</h3>
-            <p className="text-sm text-gray-500">District students list</p>
+            <h3 className="text-2xl font-bold">District teacher submission</h3>
+            <p className="text-sm text-gray-500">District submission list</p>
           </div>
           <div className="flex-1">
             <input
@@ -173,4 +173,4 @@ const SchoolPage = () => {
   );
 };
 
-export default SchoolPage;
+export default TeacherPage;

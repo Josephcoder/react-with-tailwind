@@ -1,9 +1,9 @@
 import { create } from 'zustand';
-import Auth from '../../entities/Auth';
+import Auth__Interface from '../../entities/Auth';
 
 interface AuthStore {
-  user: Auth | null;
-  login: (userData: Auth) => void;
+  user: Auth__Interface | null;
+  login: (userData: Auth__Interface) => void;
   logout: () => void;
 }
 
