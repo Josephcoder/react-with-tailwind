@@ -1,10 +1,8 @@
 import React from 'react';
+import { Academic__Interface } from '../entities/Period';
 
 interface SelectInputProps {
-  options: {
-    title: string;
-    value: string;
-  }[];
+  options: Academic__Interface[];
   title: string;
   value: string;
   onChange: (e: string) => void;
@@ -24,9 +22,9 @@ const SelectInput: React.FC<SelectInputProps> = ({
         onChange={(e) => onChange(e.target.value)}
       >
         <option value={value}>Choose a value</option>
-        {options.map(({ title, value }, i) => (
-          <option key={i} value={value}>
-            {title}
+        {options.map(({ name, id }) => (
+          <option key={id} value={id}>
+            {name}
           </option>
         ))}
       </select>

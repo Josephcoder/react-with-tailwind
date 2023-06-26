@@ -1,8 +1,21 @@
+import useAcademic from '../hooks/useAcademic';
+import useAcademics from '../hooks/useAcademics';
+import useAcademicQueryStore from '../statemanagement/academic/store';
 import SelectInput from './SelectInput';
 interface Props {
   title: string;
 }
+
 const SmallNavBar = ({ title }: Props) => {
+  const { data: Academics } = useAcademics();
+
+  const setSelectedYearId = useAcademicQueryStore((s) => s.setyearId);
+  const selectedAcademicId = useAcademicQueryStore(
+    (s) => s.academicQuery.yearId
+  );
+  const selectedAcademic = useAcademic(selectedAcademicId);
+  const setSelectedTermId = useAcademicQueryStore((s) => s.setTermId);
+
   return (
     <div className="flex items-center justify-between">
       {/* <button className="p-2 hover:bg-blue-700 hover:text-white bg-blue-600 text-white px-3 rounded-lg">
@@ -16,45 +29,23 @@ const SmallNavBar = ({ title }: Props) => {
         <div className="inline-flex gap-4">
           <div>
             <SelectInput
-              options={[
-                {
-                  title: 'Academic 2021 - 2023',
-                  value: '2021 - 2023',
-                },
-                {
-                  title: 'Academic 2021 - 2023',
-                  value: '2021 - 2023',
-                },
-                {
-                  title: 'Academic 2021 - 2023',
-                  value: '2021 - 2023',
-                },
-              ]}
+              options={Academics === undefined ? [] : Academics}
               title={'Academic'}
               value={'2021 - 2023'}
-              onChange={() => {}}
+              onChange={(yearId) => setSelectedYearId(yearId)}
             />
           </div>
 
           <div>
             <SelectInput
-              options={[
-                {
-                  title: 'First term',
-                  value: '1',
-                },
-                {
-                  title: 'Second term',
-                  value: '2',
-                },
-                {
-                  title: 'Third term',
-                  value: '2',
-                },
-              ]}
+              options={
+                selectedAcademic?.terms === undefined
+                  ? []
+                  : selectedAcademic?.terms
+              }
               title={'Term'}
               value={'2'}
-              onChange={() => {}}
+              onChange={(termId) => setSelectedTermId(termId)}
             />
           </div>
         </div>

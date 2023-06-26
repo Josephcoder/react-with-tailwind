@@ -3,6 +3,7 @@ import { MdSchool } from 'react-icons/md';
 import BarChart from '../components/BarChart';
 import { Card } from '../components/Card';
 import SelectInput from '../components/SelectInput';
+import useAcademicQueryStore from '../statemanagement/academic/store';
 import useAuthStore from '../statemanagement/auth/store';
 // import { FaSchool } from "react-icons/fa";
 // import { SiVirustotal } from "react-icons/si";

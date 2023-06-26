@@ -2,6 +2,9 @@ import axios, { AxiosRequestConfig } from 'axios';
 
 const axiosInstance = axios.create({
   baseURL: 'http://localhost:4000/api/v1',
+  headers: {
+    Authorization: 'qw',
+  },
 });
 
 class APIClient<T> {
